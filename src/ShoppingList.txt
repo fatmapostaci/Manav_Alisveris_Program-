@@ -1,0 +1,4 @@
+
+Ürün adı ='Limon', Ürün Kodu=102, Tartılan Miktar =2.0 kg , Kilo Fiyatı=45.0, Ödenecek Ürün Tutarı =90.0 TL 
+Ürün adı ='Limon', Ürün Kodu=102, Tartılan Miktar =2.0 kg , Kilo Fiyatı=45.0, Ödenecek Ürün Tutarı =90.0 TL 
+Ürün adı ='Limon', Ürün Kodu=102, Tartılan Miktar =2.0 kg , Kilo Fiyatı=45.0, Ödenecek Ürün Tutarı =90.0 TL 
