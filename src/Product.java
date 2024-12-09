@@ -4,7 +4,7 @@ public class Product {
     private double productAmount;
     private double productPrice;
     private double cost;
-    private static int productIndex;
+    private int productIndex;
 
     @Override
     public String toString() {
