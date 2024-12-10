@@ -15,29 +15,47 @@ public class Shopping_Runner {
      * 4. Adim : Alisveris bitince toplam odemesi gereken tutari goster.
      *
      * */
+    static ArrayList<String> productsList;
+    static ArrayList<Double> pricesList;
+
+
+    /**
+     *static block runs before main method, loads datas from txt files.
+     *reads the product list from file and prints out
+     */
+    static {
+
+        try {
+            productsList = Grocery.evaluateProducts();
+            System.out.println("productsList = " + productsList);
+            pricesList = Grocery.evaluatePrices();
+            System.out.println("pricesList =   " + pricesList);
+            if (productsList.size() != pricesList.size()) {
+                System.out.println("Product.txt ve Prices.txt dosyalarının verileri eşleşmiyor. " +
+                        "Devam edebilmek için dosyları güncelleyin!");
+                System.exit(0);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Dosyaları güncelleyin\n " + e.toString());
+            System.exit(0);
+        }
+
+    }//static block ends
+
     public static void main(String[] args) {
 
         Product product = new Product();
-        //reads the product list from file and prints out
-        ArrayList<String> productsList = Grocery.evaluateProducts();
-        System.out.println("productsList = " + productsList);
-        ArrayList<Double> pricesList = Grocery.evaluatePrices();
-        System.out.println("pricesList =   " + pricesList);
-
         ArrayList<Product> objectList = new ArrayList<>();
 
-         do {
-             if (productsList.size()!=pricesList.size()){
-                 System.out.println("Product.txt ve Prices.txt dosyalarının verileri eşleşmiyor. " +
-                         "Devam edebilmek için dosyları güncelleyin!");
-                 break;
-             }
-             //Default constructor ile oluşan product objesinin (fields)özellikleri set edilir
-            product.setProductName( Grocery.selectProduct(productsList));
+        do {
+
+            //Default constructor ile oluşan product objesinin (fields)özellikleri set edilir
+            product.setProductName(Grocery.selectProduct(productsList));
             product.setProductIndex(productsList.indexOf(product.getProductName()));
-            product.setProductAmount( Grocery.getProductAmount(product.getProductName()) );
-            product.setProductPrice( Grocery.getProductPrice(productsList,pricesList,product.getProductName()));
-            product.setCost( Grocery.calculateShoppingCost(product.getProductAmount(),product.getProductPrice()));
+            product.setProductAmount(Grocery.getProductAmount(product.getProductName()));
+            product.setProductPrice(Grocery.getProductPrice(productsList, pricesList, product.getProductName()));
+            product.setCost(Grocery.calculateShoppingCost(product.getProductAmount(), product.getProductPrice()));
 
             System.out.println(product);
             objectList.add(product);  //üretilen her bir product objesi ArrayListe eklenir
@@ -46,7 +64,7 @@ public class Shopping_Runner {
             Scanner sc = new Scanner(System.in);
             boolean endSession = false;
             if (sc.next().substring(0, 1).equalsIgnoreCase("E")) {
-               endSession=true;
+                endSession = true;
                 continue;
             } else break;
         } while (true);
